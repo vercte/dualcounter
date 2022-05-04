@@ -1,0 +1,266 @@
+body {
+    font-family: sans-serif;
+    display: grid;
+
+    box-sizing: border-box;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+
+    background-color: var(--background-color);
+    color: var(--text-color);
+
+    grid-template-columns: 1fr;
+    grid-template-rows: [topbar] 4em [main] 1fr;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(380deg);
+    }
+}
+
+#topbar {
+    grid-row-start: topbar;
+    grid-row-end: main;
+    background-color: var(--theme-color);
+    
+    display: grid;
+    grid-template-columns: 1em [title] 20em [void] 1fr [settings] 30pt [end-slot] 1em ;
+    grid-template-rows: 1em 1fr 1em;
+}
+
+#page-heading {
+    font-size: 2em;
+    display: inline-block;
+    color: var(--heading-color);
+    font-weight: bolder;
+
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: title;
+    grid-column-end: void;
+    cursor: pointer;
+}
+
+#page-heading:hover {
+    text-decoration-skip-ink: none;
+    text-decoration: 0.1em underline var(--heading-color);
+}
+
+#settings-button {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: settings;
+    grid-column-end: end-slot;
+
+    width: 30pt;
+    height: 30pt; 
+    cursor: pointer;
+
+    border-radius: 15pt;
+
+    overflow: hidden;
+}
+
+#settings-button img {
+    transition: transform 200ms;  
+    transform: rotate(0);
+    filter: invert(100%);
+}
+
+#settings-button:hover img {
+    transform: rotate(20deg);
+}
+
+#main-content {
+    grid-row-start: main;
+    grid-row-end: 3;
+
+    display: grid;
+
+    grid-template-columns: [l] 1fr [r] 1fr;
+    z-index: 3;
+
+}
+
+#left-panel {
+    grid-column-start: l;
+    grid-column-end: r;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#right-panel {
+    grid-column-start: r;
+    grid-column-end: 3;
+
+}
+
+#left-panel, #right-panel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+
+    z-index: 3;
+}
+
+#counter-1, #counter-2 {
+    font-size: clamp(30px, 13vw, 7em);
+    transition-duration: 200ms;
+    transition-delay: 200ms;
+    transition-property: transform, color, filter;
+    z-index: 4;
+}
+
+#counter-1-label, #counter-2-label {
+    font-size: clamp(13px, 7vw, 5em);
+    z-index: 4;
+}
+
+.spacer {
+    width: 200%;
+}
+
+.changing {
+    color: var(--theme-color);
+    transform: scale(1.2) translateY(-0.1em);
+}
+
+#settings {
+    position: fixed;
+
+    background-color: var(--background-color);
+
+    z-index: 100;
+
+    transition: opacity 200ms;
+    opacity: 1;
+
+    transform: translate(-100%, 0);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    padding: 0.5em;
+    border-radius: 0.2em;
+
+    width: 13em;
+}
+
+input[type="color"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    cursor: pointer;
+    border: none;
+    width: 4em;
+    height: calc(1em + 2pt);
+    padding: 0;
+    background-color: transparent;
+
+    transform: translate(0, 2pt);
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+    padding-right: 1em;
+    border-radius: 2pt;
+
+    background: rgb(242, 242, 242);
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border-radius: 2pt;
+    border: 1px lightgrey solid;
+}
+
+input[type="text"] {
+    width: 6em;
+    border-radius: 2pt;
+    border: 1px lightgrey solid;
+}
+
+input {
+    margin-left: 0.5em;
+    margin-bottom: 0.2em;
+}
+
+.hidden {
+    opacity: 0 !important;
+}
+
+button {
+    border: 1px lightgrey solid;
+    border-radius: 2pt;
+    background-color: white;
+    cursor: pointer;
+    transition-duration: 200ms;
+}
+
+button:hover {
+    background-color: #efefef;
+}
+
+button:active {
+    background-color: #e2e2e2;
+}
+
+.reset {
+    border: 1px red solid;
+
+    width: 100%;
+    margin-bottom: 0.2em;
+}
+
+button:hover {
+    background-color: #ffb6b6;
+}
+
+button:active {
+    background-color: #ff6464;
+}
+
+
+.clicked img{
+    animation: spin 900ms forwards;
+}
+
+@keyframes close {
+    from {
+        transform: rotate(20deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+.closing {
+    animation: close 200ms forwards;
+}
+
+@keyframes fade {
+    from {
+        opacity: 1;
+    } to {
+        opacity: 0;
+    }
+}
+
+#help {
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: var(--background-color);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    padding: 0.5em;
+    border-radius: 0.2em;
+
+    z-index: 150;
+
+    animation: fade 2s 7s forwards;
+}

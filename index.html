@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="script.js" defer></script>
+        <link href="style.css" rel="stylesheet">
+        <link href="favicon.png" rel="icon">
+        <title>Dual Counters</title>
+    </head>
+    <body style="
+        --theme-color: #008cff;
+        --heading-color: white;
+        --background-color: white;
+        --text-color: black;
+    ">
+        <div id="topbar">
+            <div id="page-heading">Dual Counters</div>
+            <div id="settings-button">
+                <img src="settings.svg" width="100%" alt="settings" title="Settings">
+            </div>
+        </div>
+        <div id="main-content">
+            <div id="left-panel">
+                <div id="counter-1-label">Primary:</div>
+                <div class="spacer"></div>
+                <div id="counter-1">
+                    0
+                </div>
+            </div>
+            <div id="right-panel">
+                <div id="counter-2-label">Secondary:</div>
+                <div class="spacer"></div>
+                <div id="counter-2">
+                    0
+                </div>
+            </div>
+        </div>
+        <div id="settings" class="hidden">
+            <div style="font-weight: bold;">Settings</div><br>
+            Theme Color: <input type="color" value="#008cff" id="theme-color"><br>
+            Heading Color: <input type="color" value="#ffffff" id="heading-color"><br>
+            Background Color: <input type="color" value="#ffffff" id="background-color"><br>
+            Text Color: <input type="color" value="#000000" id="text-color"><br>
+            Label 1: <input type="text" value="Primary:" id="primary-label"><br>
+            Label 2: <input type="text" value="Secondary:" id="secondary-label"><br><br>
+            <button class="reset" onclick="reset('counter')">Reset Counter</button><br>
+            <button class="reset" onclick="reset('settings')">Reset Settings</button>
+        </div>
+        <div id="help">
+            Left Arrow Key: Add to primary<br>
+            Right Arrow Key: Add to secondary
+        </div>
+    </body>
+</html>
